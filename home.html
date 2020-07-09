@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
+    <!-- Material design icon fonts CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google fonts CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    
+    
+    <!-- Bootstrap CSS -->
+    <link href="assets/vendor/bootstrap-4.3.1/css/bootstrap.css" rel="stylesheet">
+
+    <!-- custom scrollbar CSS -->
+    <link href="assets/vendor/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+    <!-- Customized CSS -->
+    <link href="assets/css/purple.css" id="link" rel="stylesheet">
+    <script src="../cordova.js"></script>
+    <title>Covid Cencus</title>
+    <style>
+    a:hover{
+    text-decoration: none;
+    }
+    .btn-submit{color:#6f44b6;background: #fff}.btn-submit:hover,.btn-submit:focus{background-color:#fff;color: #583691}.btn-submit:active,.btn-submit.active{background-color:#fff;color:#42286c}
+    </style>
+</head>
+
+<body class="h-100">
+    <div class="loader">
+        <div>
+            <div class="loader-animation">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <br>
+            <h2 class="mt-4"><span class="font-weight-light">COVID'19 Survey</span></h2>            
+            <p class="text-mute">Loading...</p>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="content h-100 d-flex flex-column w-100">
+            <header class="header fixed-top">
+                <!-- Fixed navbar -->
+                <nav class="container-fluid">
+                    <div class="row">
+                        <div class="col-auto align-self-center">
+                            <div class="row h-100">
+                                <div class="col-auto">
+                                    <img src="img/emblem.png" width="30px" height="30px">
+                                </div>
+                                <div class="col self-align-center">
+                                    <p class="btn btn-sm btn-link template-primary " >
+                                        நஞ்சை புளியம்பட்டி 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-center align-self-center px-0 ">
+
+                        </div>
+                        
+                    </div>
+                </nav>
+            </header>
+            
+           
+
+            <!-- Begin page content -->
+            <main class="flex-shrink-0">
+                <div class="container-fluid" id="main-container">
+                    <div class="row">
+                        <div class="banner col-12 " style="background:#6f44b6;color:white;">
+                            <h5 class="text-center my-5 font-weight-light">குடும்ப உறுப்பினர் விவரங்களை உள்ளிடவும்</h5>
+                        </div>
+                    </div>
+                    <form action="#" id="member_form">
+                    <div class="row" style="background:#6f44b6;color:white;" >
+                        <input type="hidden" id="user_id" name="user_id"/>
+                        <div id="form_members">                                              
+                        </div>
+                        <div class="container mb-2 pb-2">
+                            <div class="row">                                
+                                <div class="col-12 col-md-2 ">                                                                                                      
+                                    <button type="submit" id="submit" class=" btn btn-block btn-submit">பதிவு செய்</button>
+                                </div>                                        
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+
+
+
+
+                </div>
+            </main>
+
+            <footer class="footer mt-auto">
+                <div class="container text-center">
+                    <p>Copyright Mubarak.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+    <script src="js/getservices.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {                     
+            var id = window.localStorage.getItem("uid");                
+            var members = window.localStorage.getItem("members");  
+            var profile = window.localStorage.getItem("profile");              
+            
+            $("#user_id").val(id);            
+
+            var url = window.location.pathname;
+            var filename = url.substring(url.lastIndexOf('/')+1);
+            if(localStorage.login=="true" && filename == 'home.html' && localStorage.profile == '0')
+                {
+                    //window.location.href = "home.html?members="+members;
+                }
+            else if(localStorage.login=="true" && filename == 'home.html' && localStorage.profile == '1')
+                {
+                    window.location.href = "member_list.html";
+                }            
+            else if(localStorage.login=="false" && filename != 'home.html')
+                {
+                    window.location.href = "index.html";
+                }
+
+            var members = decodeURI(getUrlVars()["members"]);  
+            var data = "";
+            for ( var i=0; i<members; i++) {
+                data = '<div class="container mb-2 pb-2"><div class="row"><div class="col-8 col-md-2 "><input type="text" id="name'+i+'" name="members[]" class="form-control form-control-lg rounded-0 border-0" placeholder="உறுப்பினர் பெயர்" required="" autocomplete="" ></div><div class="col-4 col-md-2 "><input type="number" min="0" id="age'+i+'" name="age[]" class="form-control form-control-lg rounded-0 border-0" placeholder="வயது" required="" autocomplete="" ></div></div></div>';           
+                $("#form_members").append(data);
+            }      
+        });    
+
+        $("#member_form").submit(function(e){        
+        e.preventDefault();
+        var service = getservice();
+        var url = service+'add_family_members.php';
+       
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: $('#member_form').serialize(),
+              dataType: false,
+              crossDomain: true,
+              cache:false,
+              beforeSend: function(){ $("#submit").html('தயவுசெய்து காத்திருங்கள்...');},
+              success: function(data){
+                var objData = data;
+                if(objData['code'] == 1)	            	
+                  {                    
+                    localStorage.profile='1'; 
+                    $("#submit").html('பதிவு செய்');
+                    window.location.href='member_list.html';
+                  }
+                  else
+                  {
+                    alert(objData['msg']);                   
+                    $("#submit").html('பதிவு செய்');
+                  }
+              }
+        });        
+      });
+
+    </script>
+    
+    
+    
+    <!-- Template main js -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- page specific script -->
+    <script>
+        'user strict'
+        $(document).ready(function() {
+
+        });
+
+    </script>
+
+</body>
+
+
+
+</html>

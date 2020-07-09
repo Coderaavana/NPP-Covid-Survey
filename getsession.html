@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <style>
+        body, input {
+          font-family: "Roboto", sans-serif;
+        }
+    </style>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/geturi.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var members = decodeURI(getUrlVars()["members"]);
+        var id = decodeURI(getUrlVars()["id"]);         
+        var phone = decodeURI(getUrlVars()["phone"]);
+        var profile = decodeURI(getUrlVars()["profile"]);        
+
+        localStorage.login="true";
+		localStorage.members=members;
+        localStorage.uid=id;                     
+        localStorage.phone=phone;
+        localStorage.profile=profile;        
+
+        var url = window.location.pathname;
+        var filename = url.substring(url.lastIndexOf('/')+1);
+        if(localStorage.login=="true" && filename == 'getsession.html' && localStorage.profile == '0')
+            {
+                window.location.href = "home.html?members="+members;
+            }
+        else if(localStorage.login=="true" && filename == 'getsession.html' && localStorage.profile == '1')
+            {
+                window.location.href = "member_list.html";
+            }            
+        else if(localStorage.login=="false" && filename != 'getsession.html')
+            {
+                window.location.href = "index.html";
+            }
+    });
+    </script>
+  </head>  
+</html>

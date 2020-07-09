@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
+    <!-- Material design icon fonts CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google fonts CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    
+    
+    <!-- Bootstrap CSS -->
+    <link href="assets/vendor/bootstrap-4.3.1/css/bootstrap.css" rel="stylesheet">
+
+    <!-- custom scrollbar CSS -->
+    <link href="assets/vendor/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+    <!-- Customized CSS -->
+    <link href="assets/css/purple.css" id="link" rel="stylesheet">
+    <script src="../cordova.js"></script>
+    <title>Covid Cencus</title>
+    <style>
+    a:hover{
+    text-decoration: none;
+    }
+    .btn-submit{color:#6f44b6;background: #fff}.btn-submit:hover,.btn-submit:focus{background-color:#fff;color: #583691}.btn-submit:active,.btn-submit.active{background-color:#fff;color:#42286c}
+    </style>
+</head>
+
+<body class="h-100">
+    <div class="loader">
+        <div>
+            <div class="loader-animation">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <br>
+            <h2 class="mt-4"><span class="font-weight-light">COVID'19 Survey</span></h2>            
+            <p class="text-mute">Loading...</p>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="content h-100 d-flex flex-column w-100">
+            <header class="header fixed-top">
+                <!-- Fixed navbar -->
+                <nav class="container-fluid">
+                    <div class="row">
+                        <div class="col-auto align-self-center">
+                            <div class="row h-100">
+                                <div class="col-auto">
+                                    <img src="img/emblem.png" width="30px" height="30px">
+                                </div>
+                                <div class="col self-align-center">
+                                    <p class="btn btn-sm btn-link template-primary " >
+                                        நஞ்சை புளியம்பட்டி 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-center align-self-center px-0 ">
+
+                        </div>
+                        
+                    </div>
+                </nav>
+            </header>
+            
+            
+           
+
+            <!-- Begin page content -->
+            <main class="flex-shrink-0">
+                <div class="container-fluid" id="main-container">
+                    <div class="row">
+                        <div class="banner col-12 mb-4 pb-5" style="background:#6f44b6;color:white;">
+                            <h5 class="text-center my-5 font-weight-light">அறிகுறிகளுக்கான தொடர்பு நாட்குறிப்பு</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container top-60">
+                                <div class="card shadow-sm border-0 mb-4">
+                                    <form method="POST" class="j-forms" id="new_forms">
+                                        <div class="card-body">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-10 mx-auto">
+                                                    <div class="form-group row mt-4">
+                                                        <div class=" col-md-6">
+                                                            <label>உறுப்பினர் பெயர்</label>
+                                                            <input type="text" readonly="" class="form-control" name="name" id="name_here">
+                                                            <input type="hidden" name="user_id" id="user_id"/>
+                                                            <input type="hidden" name="member_id" id="member_id"/>
+                                                        </div>
+                                                        <div class=" col-md-6">
+                                                            <label>அறிகுறிகள்</label>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="none" name="none">
+                                                                <label class="custom-control-label" for="none">எதுவும் இல்லை</label>
+                                                            </div>                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div id="none_show">
+                                                        <div class="form-group row">
+                                                            <div class=" col-md-6">
+                                                                <label>காய்ச்சல் உள்ளதா </label>
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="fever" class="custom-control-input"  id="fever_yes" value="Yes">
+                                                                        <label class="custom-control-label" for="fever_yes" >ஆம்</label>
+                                                                    </div>        
+                                                                </div>    
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="fever" class="custom-control-input" id="fever_no" value="No">
+                                                                        <label class="custom-control-label" for="fever_no">இல்லை</label>
+                                                                    </div>    
+                                                                </div>  
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class=" col-md-6">
+                                                                <label>சளி உள்ளதா </label>
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="running_nose" class="custom-control-input"  id="runny_yes" value="Yes">
+                                                                        <label class="custom-control-label" for="runny_yes" >ஆம்</label>
+                                                                    </div>        
+                                                                </div>    
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="running_nose" class="custom-control-input" id="runny_no" value="No">
+                                                                        <label class="custom-control-label" for="runny_no">இல்லை</label>
+                                                                    </div>    
+                                                                </div>  
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class=" col-md-6">
+                                                                <label>இருமல் உள்ளதா </label>
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="cough" class="custom-control-input"  id="cough_yes" value="Yes">
+                                                                        <label class="custom-control-label" for="cough_yes" >ஆம்</label>
+                                                                    </div>        
+                                                                </div>    
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="cough" class="custom-control-input" id="cough_no" value="No">
+                                                                        <label class="custom-control-label" for="cough_no">இல்லை</label>
+                                                                    </div>    
+                                                                </div>  
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class=" col-md-6">
+                                                                <label>தொண்டை வலி</label>
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="sore_throat" class="custom-control-input"  id="throat_yes" value="Yes">
+                                                                        <label class="custom-control-label" for="throat_yes" >ஆம்</label>
+                                                                    </div>        
+                                                                </div>    
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="sore_throat" class="custom-control-input" id="throat_no" value="No">
+                                                                        <label class="custom-control-label" for="throat_no">இல்லை</label>
+                                                                    </div>    
+                                                                </div>  
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class=" col-md-6">
+                                                                <label>மூச்சு திணறல்</label>
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="breath_short" class="custom-control-input"  id="breath_yes" value="Yes">
+                                                                        <label class="custom-control-label" for="breath_yes" >ஆம்</label>
+                                                                    </div>        
+                                                                </div>    
+                                                                <div class="col-md-3 ">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input type="radio" name="breath_short" class="custom-control-input" id="breath_no" value="No">
+                                                                        <label class="custom-control-label" for="breath_no">இல்லை</label>
+                                                                    </div>    
+                                                                </div>  
+                                                            </div>
+                                                        </div>    
+                                                        <div class="form-group row">                                                                
+                                                            <div class=" col-md-6">
+                                                                <label>வேறு ஏதேனும் அறிகுறிகள் இருந்தால் குறிப்பிடவும்</label>
+                                                                <textarea class="form-control form-control-lg" rows="3" name="others" id="others"></textarea>                                                                    
+                                                            </div>                                                                
+                                                        </div>  
+                                                    </div>
+                                                        <div class="card-footer">                                            
+                                                            <button class="btn btn-info float-right" id="submit" type="submit">பதிவு செய்</button>
+                                                        </div>    
+                                                    
+                                                    <br>
+                                                </div>                                             
+                                            </div>
+                                        </div>                                        
+                                    </form>
+                                </div>
+                        </div>
+                        
+                       
+                    </div>
+
+
+
+
+
+                </div>
+            </main>
+
+            <!-- <footer class="footer mt-auto">
+                <div class="container text-center">
+                    <p>Copyright Mubarak.</p>
+                </div>
+            </footer> -->
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>    
+    <script src="assets/vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+
+    
+    
+    
+    
+    <!-- Template main js -->
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+    <script src="js/getservices.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {                     
+            var member_id = decodeURI(getUrlVars()["member_id"]);
+            var id = window.localStorage.getItem("uid");  
+            var service = getservice();
+            $("#user_id").val(id);            
+            $("#member_id").val(member_id);           
+
+            var url1 = service+'survey_check.php?member_id='+member_id+'&user_id='+id;
+            $.getJSON(url1, function(result) {                                        
+                if(result['code'] == "0")
+                {
+                    alert(result['msg']);
+                    window.location.href='member_list.html';
+                }
+                
+            });
+
+            var url = service+'member_name.php?member_id='+member_id;
+            $.getJSON(url, function(result) {                                        
+                $('#name_here').val(result['name']);            
+                
+            });
+
+            
+
+        });
+    
+        $('#none').change(function(){
+            if(this.checked)
+                $('#none_show').hide();
+            else
+                $('#none_show').show();
+
+        });
+
+        $("#new_forms").submit(function(e){        
+        e.preventDefault();
+        var service = getservice();
+        var url = service+'add_survey.php';
+       
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: $('#new_forms').serialize(),
+              dataType: false,
+              crossDomain: true,
+              cache:false,
+              beforeSend: function(){ $("#submit").html('தயவுசெய்து காத்திருங்கள்...');},
+              success: function(data){
+                var objData = data;
+                if(objData['code'] == 1)	            	
+                  {                    
+                    localStorage.profile='1'; 
+                    $("#submit").html('பதிவு செய்');
+                    window.location.href='member_list.html';
+                  }
+                  else
+                  {
+                    alert(objData['msg']);                   
+                    $("#submit").html('பதிவு செய்');
+                  }
+              }
+        });        
+      });
+    </script>
+
+</body>
+
+
+
+</html>
