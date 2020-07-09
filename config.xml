@@ -12,7 +12,7 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <name>NPP</name>
+    <name>Nanjai</name>
     <description>
         Nanjai Puliyampatti Corona Survey 
     </description>
