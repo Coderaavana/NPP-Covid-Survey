@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">      
+
+    
+    
+    <!-- Bootstrap CSS -->
+    <link href="assets/vendor/bootstrap-4.3.1/css/bootstrap.css" rel="stylesheet">
+
+    <!-- custom scrollbar CSS -->
+    <link href="assets/vendor/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+    <!-- Customized CSS -->
+    <link href="assets/css/purple.css" id="link" rel="stylesheet">
+    <script src="../cordova.js"></script>
+    <title>Covid Cencus</title>
+    <style>
+    a:hover{
+    text-decoration: none;
+    }
+    .btn-submit{color:#6f44b6;background: #fff}.btn-submit:hover,.btn-submit:focus{background-color:#fff;color: #583691}.btn-submit:active,.btn-submit.active{background-color:#fff;color:#42286c}
+    </style>
+</head>
+
+<body class="h-100">
+    <div class="loader">
+        <div>
+            <div class="loader-animation">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <br>
+            <h2 class="mt-4"><span class="font-weight-light">COVID'19 Survey</span></h2>            
+            <p class="text-mute">Loading...</p>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="content h-100 d-flex flex-column w-100">
+            <header class="header fixed-top">
+                <!-- Fixed navbar -->
+                <nav class="container-fluid">
+                    <div class="row">
+                        <div class="col-auto align-self-center">
+                            <div class="row h-100">
+                                <div class="col-auto">
+                                    <img src="img/emblem.png" width="30px" height="30px">
+                                </div>
+                                <div class="col self-align-center">
+                                    <p class="btn btn-sm btn-link template-primary " >
+                                        நஞ்சை புளியம்பட்டி 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-center align-self-center px-0 ">
+
+                        </div>
+                        
+                    </div>
+                </nav>
+            </header>
+           
+
+            <!-- Begin page content -->
+            <main class="flex-shrink-0">
+                <div class="container-fluid" id="main-container">
+                    <div class="row">
+                        <div class="banner col-12 mb-4 pb-5" style="background:#6f44b6;color:white;">
+                            <h5 class="text-center my-5 font-weight-light">நாள் வாரியான கணக்கெடுப்பு</h5>
+                        </div>
+                    </div>
+
+                    <div class="row" >
+                        <div class="container top-60" style="background:#6f44b6;">
+                            <form method="POST" class="j-forms" id="date_forms">
+                                <div class="col-12 col-md-6 ">
+                                    <div class="card border-0 shadow-sm mb-4" style="display: flex;"> 
+                                        <input type="date" class="form-control" name="date" id="date" required="" />    
+                                        <input type="hidden" name="user_id" id="user_id"/>                                             
+                                        <button class="btn btn-info float-right" id="submit" type="submit">பதிவு செய்</button>                                      
+                                    </div>                                                                                                                       
+                                </div>
+                            </form>                            
+                            <div id="accordion">                                
+                            </div>                            
+                        </div>
+                    </div>                      
+                </div>
+            </main>
+
+            <footer class="footer mt-auto">
+                <div class="container text-center">
+                    <p>Copyright Mubarak.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/geturi.js"></script>
+    <script src="js/getservices.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {                     
+            var id = window.localStorage.getItem("uid");     
+            $("#user_id").val(id);                                                             
+        });
+        
+
+        $("#date_forms").submit(function(e){        
+        e.preventDefault();
+        var service = getservice();
+        var url = service+'list_member_view.php';
+       
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: $('#date_forms').serialize(),
+              dataType: false,
+              crossDomain: true,
+              cache:false,
+              beforeSend: function(){ $("#submit").html('தயவுசெய்து காத்திருங்கள்...');},
+              success: function(data){
+                $.each(data, function(i, field) {
+                    if(field.no_sympt == "No")
+                    {
+                        $("#accordion").append('<div class="card mb-4 border-0 shadow-sm"> <div class="card-header" id="member'+field.id+'"> <button class="p-0 btn btn-link collapsed" data-toggle="collapse" data-target="#collapse'+field.id+'" aria-expanded="false" aria-controls="collapse'+field.id+'">'+field.name+'</button> </div><div id="collapse'+field.id+'" class="collapse" aria-labelledby="member'+field.id+'" data-parent="#accordion" style=""> <div class="card-body"> <div class="row justify-content-center"> <div class="col-md-10 mx-auto"> <div class="form-group row mt-4"> <div class=" col-md-6"> <label class="font-weight-bold">அறிகுறிகள்</label> <div class="custom-control custom-checkbox"><label>எதுவும் இல்லை</label> </div></div></div></div></div></form> </div></div></div>');
+                    }
+                    else
+                    {
+                        $("#accordion").append('<div class="card mb-4 border-0 shadow-sm"> <div class="card-header" id="member'+field.id+'"> <button class="p-0 btn btn-link collapsed" data-toggle="collapse" data-target="#collapse'+field.id+'" aria-expanded="false" aria-controls="collapse'+field.id+'">'+field.name+'</button> </div><div id="collapse'+field.id+'" class="collapse" aria-labelledby="member'+field.id+'" data-parent="#accordion" style=""> <div class="card-body"> <div class="row justify-content-center"> <div class="col-md-10 mx-auto"> <div id="none_show'+field.id+'"> <div class="form-group row"> <div class=" col-md-6"> <label>காய்ச்சல் உள்ளதா </label> <div class="col-md-3 "> <div class="custom-control custom-radio"> <label>'+field.fever+'</label> </div></div></div></div><div class="form-group row"> <div class=" col-md-6"> <label>சளி உள்ளதா </label> <div class="col-md-3 "> <div class="custom-control custom-radio"> <label>'+field.nose+'</label> </div></div></div></div><div class="form-group row"> <div class=" col-md-6"> <label>இருமல் உள்ளதா </label> <div class="col-md-3 "> <div class="custom-control custom-radio"> <label >'+field.cough+'</label> </div></div></div></div><div class="form-group row"> <div class=" col-md-6"> <label>தொண்டை வலி</label> <div class="col-md-3 "> <div class="custom-control custom-radio"> <label >'+field.throat+'</label> </div></div></div></div><div class="form-group row"> <div class=" col-md-6"> <label>மூச்சு திணறல்</label> <div class="col-md-3 "> <div class="custom-control custom-radio"> <label>'+field.breath+'</label> </div></div></div></div><div class="form-group row"> <div class=" col-md-6"> <label>வேறு ஏதேனும் அறிகுறிகள் இருந்தால் குறிப்பிடவும்</label> <textarea class="form-control form-control-lg" rows="3" name="others" id="others">'+field.others+'</textarea> </div></div></div></div></div></div></div></div>');
+                    }
+                    $("#submit").html('பதிவு செய்');
+                });                 
+              }
+        });        
+      });
+        
+        
+    </script>
+    
+    
+    <!-- Template main js -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- page specific script -->
+    <script>
+        'user strict'
+        $(document).ready(function() {
+
+        });
+
+    </script>
+
+</body>
+
+
+
+</html>

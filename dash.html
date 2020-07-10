@@ -5,7 +5,8 @@
 <head>
     <!-- Required meta tags -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">     
+
     
     
     <!-- Bootstrap CSS -->
@@ -66,6 +67,9 @@
                         <div class="col text-center align-self-center px-0 ">
 
                         </div>
+                        <div class="col text-center align-self-center px-0 ">
+                            <a href="logout.html">Logout</a>
+                        </div>
                         
                     </div>
                 </nav>
@@ -74,17 +78,39 @@
 
             <!-- Begin page content -->
             <main class="flex-shrink-0">
-                <div class="container-fluid" id="main-container">
+                <div class="container-fluid" id="main-container">     
                     <div class="row">
                         <div class="banner col-12 mb-4 pb-5" style="background:#6f44b6;color:white;">
-                            <h5 class="text-center my-5 font-weight-light">குடும்ப உறுப்பினர்களின் பட்டியல்</h5>
+                            <h5 class="text-center my-5 font-weight-light">வணக்கம்</h5>
                         </div>
-                    </div>
+                    </div>               
                     <div class="row" >
-                        <div class="container top-60" style="background:#6f44b6;">                            
-                             <div id="member_list">
-                            </div>                            
-                        </div>
+                        <div class="container top-60" style="background:#6f44b6;">
+                            <div class="col-12 col-md-6 ">
+                                <div class="card border-0 shadow-sm mb-4">
+                                    <a href="member_list.html">
+                                        <div class="card-body"><div class="row">
+                                            <div class="col">
+                                                <h6 class="mb-0"><span class="subtitle">கணக்கெடுப்பைச் சேர்க்க</span></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            </div> 
+                         <div class="col-12 col-md-6 ">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <a href="view_list.html">
+                                    <div class="card-body"><div class="row">
+                                        <div class="col">
+                                            <h6 class="mb-0"><span class="subtitle">கணக்கெடுப்பு காண்க</span></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                         </div>
+                     </div>                          
+                     </div>
                     </div>                      
                 </div>
             </main>
@@ -107,14 +133,7 @@
     <script src="js/getservices.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {                     
-            var id = window.localStorage.getItem("uid");                            
-            var service = getservice();                        
-            var url = service+'list_members.php?user_id='+id;
-            $.getJSON(url, function(result) {
-                $.each(result, function(i, field) {                   
-                    $('#member_list').append('<div class="col-12 col-md-6 "><div class="card border-0 shadow-sm mb-4"><a href="new_entry.html?member_id='+field.id+'"><div class="card-body"><div class="row"><div class="col"><h6 class="mb-0"><span class="subtitle">'+field.name+'</span></h6></div></div></div></a></div></div>');                               
-                });                
-            });              
+            var id = window.localStorage.getItem("uid");                                        
         });
         
         
@@ -125,14 +144,7 @@
     <!-- Template main js -->
     <script src="assets/js/main.js"></script>
 
-    <!-- page specific script -->
-    <script>
-        'user strict'
-        $(document).ready(function() {
 
-        });
-
-    </script>
 
 </body>
 

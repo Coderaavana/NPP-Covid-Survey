@@ -4,14 +4,8 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
-    <!-- Material design icon fonts CSS -->
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-
-    <!-- Google fonts CSS -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"> -->
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
     <!-- Bootstrap CSS -->
     <link href="assets/vendor/bootstrap-4.3.1/css/bootstrap.css" rel="stylesheet">
@@ -56,10 +50,13 @@
 
                             <div class="row h-100 h-sm-auto">
                                 <div class="mb-4 d-flex justify-content-center " style="margin:0px auto;">
-                                    <img src="img/emblem.png" style="width:100px;"/>
+                                    <img src="img/emblem.png" style="width:70px;"/>
                                 </div>     
                                 <div class="col-12 col-md-10 col-lg-10 col-xl-7 mx-auto text-dark">
-                                    <h3 class="font-weight-normal mb-4 text-center">நஞ்சை புளியம்பட்டி </h3>
+                                    
+                                    <h3 class="font-weight-normal mb-4 text-center">ஈரோடு மாவட்டம்</h3>
+                                    <h6 class="font-weight-normal mb-4 text-center">T.N. பாளையம் ஒன்றியம்</h6>
+                                    <h6 class="font-weight-normal mb-4 text-center">நஞ்சை புளியம்பட்டி ஊராட்சி </h6>
                                     <h5 class="font-weight-light mb-1 text-mute-high text-center">Covid'19 கணக்கெடுப்பு</h5>
                                     <br>
                                     <!-- <center><h5 class="font-weight-light mb-1 text-mute-high">Sign In</h5></center> -->
@@ -67,7 +64,7 @@
                                     <div class="card  mb-2 overflow-hidden">
                                         <div class="card-body p-0">
                                             <label for="inputEmail" class="sr-only">கதவு எண்</label>
-                                            <input type="text" id="door_no" name="door_no" class="form-control form-control-lg rounded-0 border-0" placeholder="கதவு எண்" required="" autofocus="" >
+                                            <input type="text" id="door_no" name="door_no" class="form-control form-control-lg rounded-0 border-0" placeholder="கதவு எண்" required="" autocomplete="" autofocus="" >
                                             <hr class="my-0">
                                             <label for="inputPassword" class="sr-only">கடவுச்சொல்</label>
                                             <input type="password" id="pass" name="pass" class="form-control form-control-lg rounded-0 border-0" placeholder="கடவுச்சொல்" required="">
@@ -102,13 +99,10 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>    
     <script src="assets/vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
     
-
-    <!-- custom scrollbar -->
-    <script src="assets/vendor/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
+        
 
 
     <!-- Template main js -->
@@ -130,7 +124,7 @@
           e.preventDefault();
           if ($.trim(door_no).length == 0)
             {
-              alert("கதவு எண் ஏற்கனவே உள்ளது.");
+              alert("கதவு எண்ணை உள்ளிடவும்");
               //window.plugins.toast.showLongBottom('Please Enter User Name', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});        
             }
             else if(pass.trim() == '')

@@ -4,12 +4,9 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
-    <!-- Material design icon fonts CSS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Google fonts CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">   
+
 
     
     
@@ -96,23 +93,30 @@
                                                 <div class="col-md-10 mx-auto">
                                                     <div class="form-group row mt-4">
                                                         <div class=" col-md-6">
-                                                            <label>உறுப்பினர் பெயர்</label>
+                                                            <label class="font-weight-bold">உறுப்பினர் பெயர்</label>
                                                             <input type="text" readonly="" class="form-control" name="name" id="name_here">
                                                             <input type="hidden" name="user_id" id="user_id"/>
                                                             <input type="hidden" name="member_id" id="member_id"/>
                                                         </div>
                                                         <div class=" col-md-6">
-                                                            <label>அறிகுறிகள்</label>
+                                                            <label class="font-weight-bold">அறிகுறிகள்</label>
                                                             <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="none" name="none">
+                                                                <input type="checkbox" class="custom-control-input" id="none" name="none" value="no">
                                                                 <label class="custom-control-label" for="none">எதுவும் இல்லை</label>
                                                             </div>                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class=" col-md-6">
+                                                            <label class="font-weight-bold">தேதி</label>
+                                                            <div class="col-md-3 " id="date_div">                                                                                                                                    
+                                                            </div>                                                                
                                                         </div>
                                                     </div>
                                                     <div id="none_show">
                                                         <div class="form-group row">
                                                             <div class=" col-md-6">
-                                                                <label>காய்ச்சல் உள்ளதா </label>
+                                                                <label class="font-weight-bold">காய்ச்சல் உள்ளதா </label>
                                                                 <div class="col-md-3 ">
                                                                     <div class="custom-control custom-radio">
                                                                         <input type="radio" name="fever" class="custom-control-input"  id="fever_yes" value="Yes">
@@ -129,7 +133,7 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class=" col-md-6">
-                                                                <label>சளி உள்ளதா </label>
+                                                                <label class="font-weight-bold">சளி உள்ளதா </label>
                                                                 <div class="col-md-3 ">
                                                                     <div class="custom-control custom-radio">
                                                                         <input type="radio" name="running_nose" class="custom-control-input"  id="runny_yes" value="Yes">
@@ -146,7 +150,7 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class=" col-md-6">
-                                                                <label>இருமல் உள்ளதா </label>
+                                                                <label class="font-weight-bold">இருமல் உள்ளதா </label>
                                                                 <div class="col-md-3 ">
                                                                     <div class="custom-control custom-radio">
                                                                         <input type="radio" name="cough" class="custom-control-input"  id="cough_yes" value="Yes">
@@ -163,7 +167,7 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class=" col-md-6">
-                                                                <label>தொண்டை வலி</label>
+                                                                <label class="font-weight-bold">தொண்டை வலி</label>
                                                                 <div class="col-md-3 ">
                                                                     <div class="custom-control custom-radio">
                                                                         <input type="radio" name="sore_throat" class="custom-control-input"  id="throat_yes" value="Yes">
@@ -180,7 +184,7 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class=" col-md-6">
-                                                                <label>மூச்சு திணறல்</label>
+                                                                <label class="font-weight-bold">மூச்சு திணறல்</label>
                                                                 <div class="col-md-3 ">
                                                                     <div class="custom-control custom-radio">
                                                                         <input type="radio" name="breath_short" class="custom-control-input"  id="breath_yes" value="Yes">
@@ -197,7 +201,7 @@
                                                         </div>    
                                                         <div class="form-group row">                                                                
                                                             <div class=" col-md-6">
-                                                                <label>வேறு ஏதேனும் அறிகுறிகள் இருந்தால் குறிப்பிடவும்</label>
+                                                                <label class="font-weight-bold">வேறு ஏதேனும் அறிகுறிகள் இருந்தால் குறிப்பிடவும்</label>
                                                                 <textarea class="form-control form-control-lg" rows="3" name="others" id="others"></textarea>                                                                    
                                                             </div>                                                                
                                                         </div>  
@@ -246,7 +250,25 @@
     <script type="text/javascript" src="js/geturi.js"></script>
     <script src="js/getservices.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {                     
+        $(document).ready(function() {   
+            
+            var today = new Date();
+            var dd = today.getDate();
+
+            var mm = today.getMonth()+1; 
+            var yyyy = today.getFullYear();
+            if(dd<10) 
+            {
+                dd='0'+dd;
+            } 
+
+            if(mm<10) 
+            {
+                mm='0'+mm;
+            }             
+            today = mm+'/'+dd+'/'+yyyy;                        
+            var datas = '<input type="date" name="date" class="form-control"  id="date"  value="'+today+'" min="01/01/2020"  max="'+today+'">';
+            $("#date_div").html(datas);
             var member_id = decodeURI(getUrlVars()["member_id"]);
             var id = window.localStorage.getItem("uid");  
             var service = getservice();
@@ -297,8 +319,7 @@
               success: function(data){
                 var objData = data;
                 if(objData['code'] == 1)	            	
-                  {                    
-                    localStorage.profile='1'; 
+                  {                                        
                     $("#submit").html('பதிவு செய்');
                     window.location.href='member_list.html';
                   }
