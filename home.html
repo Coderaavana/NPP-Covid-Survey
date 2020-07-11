@@ -21,7 +21,7 @@
 
     <!-- Customized CSS -->
     <link href="assets/css/purple.css" id="link" rel="stylesheet">
-    <script src="../cordova.js"></script>
+    <script src="cordova.js"></script>
     <title>Covid Cencus</title>
     <style>
     a:hover{
@@ -123,6 +123,22 @@
     <script type="text/javascript" src="js/geturi.js"></script>
     <script src="js/getservices.js"></script>
     <script type="text/javascript">
+    document.addEventListener("deviceready", init, false);
+        function init()
+        {
+                    document.addEventListener('deviceready', function() {
+                    //  var exitApp = false, intval = setInterval(function (){exitApp = false;}, 3000);
+                    document.addEventListener("backbutton",onBackKeyDown,!1)
+                    function onBackKeyDown(a) {
+                        a.preventDefault(),navigator.notification.confirm("Are you sure you want to exit ?",onConfirm,"Confirmation","Yes,No")
+                    }
+                    function onConfirm(a) {
+                        2!=a&&navigator.app.exitApp()
+                    }            
+                }, false);
+
+        }
+
         $(document).ready(function() {                     
             var id = window.localStorage.getItem("uid");                
             var members = window.localStorage.getItem("members");  

@@ -15,7 +15,7 @@
 
     <!-- Customized CSS -->
     <link href="assets/css/purple.css" id="link" rel="stylesheet">
-    <script src="../cordova.js"></script>
+    <script src="cordova.js"></script>
     <title>Covid Cencus</title>
 </head>
 
@@ -92,7 +92,7 @@
 
             <footer class="footer mt-auto">
                 <div class="container text-center">
-                    <!-- <p>Copyright Mubarak.</p> -->
+                    Made in <span style="color: #e74c3c">&hearts;</span> CodeRaavana
                 </div>
             </footer>
         </div>       
@@ -110,7 +110,21 @@
     <script src="js/getservices.js"></script>
     <!-- page specific script -->
     <script>
-        
+        document.addEventListener("deviceready", init, false);
+        function init()
+        {
+                    document.addEventListener('deviceready', function() {
+                    //  var exitApp = false, intval = setInterval(function (){exitApp = false;}, 3000);
+                    document.addEventListener("backbutton",onBackKeyDown,!1)
+                    function onBackKeyDown(a) {
+                        a.preventDefault(),navigator.notification.confirm("Are you sure you want to exit ?",onConfirm,"Confirmation","Yes,No")
+                    }
+                    function onConfirm(a) {
+                        2!=a&&navigator.app.exitApp()
+                    }            
+                }, false);
+
+        }
       
         $("#login").click(function(e){        
         var service = getservice();
