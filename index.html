@@ -65,9 +65,7 @@
                                         <div class="card-body p-0">
                                             <label for="inputEmail" class="sr-only">கதவு எண்</label>
                                             <input type="text" id="door_no" name="door_no" class="form-control form-control-lg rounded-0 border-0" placeholder="கதவு எண்" required="" autocomplete="" autofocus="" >
-                                            <hr class="my-0">
-                                            <label for="inputPassword" class="sr-only">கடவுச்சொல்</label>
-                                            <input type="password" id="pass" name="pass" class="form-control form-control-lg rounded-0 border-0" placeholder="கடவுச்சொல்" required="">
+                                            <hr class="my-0">                                            
                                         </div>
                                     </div>
                                     <div class="my-3 row">                                        
@@ -115,22 +113,15 @@
         var service = getservice();
         var url = service+'login.php';
       
-          var door_no=$("#door_no").val();
-          var pass=$("#pass").val();          
+          var door_no=$("#door_no").val();          
       
       
           var dataString="door_no="+door_no+"&pass="+pass;
           e.preventDefault();
           if ($.trim(door_no).length == 0)
             {
-              alert("கதவு எண்ணை உள்ளிடவும்");
-              //window.plugins.toast.showLongBottom('Please Enter User Name', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});        
-            }
-            else if(pass.trim() == '')
-            {
-              alert("கடவுச்சொல்லை உள்ளிடவும்");
-             // window.plugins.toast.showLongBottom('Please Enter a Password', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
-            }
+              alert("கதவு எண்ணை உள்ளிடவும்");             
+            }            
             else
             {
         $.ajax({
