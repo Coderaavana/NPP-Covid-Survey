@@ -121,6 +121,10 @@
     <script src="js/getservices.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {                     
+            if(localStorage.login=="false")
+            {
+                window.location.href = "index.html";
+            }
             var id = window.localStorage.getItem("uid");     
             $("#user_id").val(id);                                                             
         });

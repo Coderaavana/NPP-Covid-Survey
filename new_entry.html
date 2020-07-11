@@ -254,7 +254,10 @@
     <script src="js/getservices.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {   
-            
+            if(localStorage.login=="false")
+            {
+                window.location.href = "index.html";
+            }       
             var today = new Date();
             var dd = today.getDate();
 

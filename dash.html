@@ -132,7 +132,12 @@
     <script type="text/javascript" src="js/geturi.js"></script>
     <script src="js/getservices.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {                     
+        
+        $(document).ready(function() {        
+            if(localStorage.login=="false")
+            {
+                window.location.href = "index.html";
+            }             
             var id = window.localStorage.getItem("uid");                                        
         });
         

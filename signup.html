@@ -135,7 +135,12 @@
     <script src="js/getservices.js"></script>
     <!-- page specific script -->
     <script>
-        
+        $(document).ready(function() {   
+            if(localStorage.login=="false")
+            {
+                window.location.href = "index.html";
+            } 
+        });
       
         $("#signup").submit(function(e){   
         e.preventDefault();
