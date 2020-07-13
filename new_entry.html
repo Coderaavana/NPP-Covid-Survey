@@ -281,15 +281,15 @@
             $("#user_id").val(id);            
             $("#member_id").val(member_id);           
 
-            var url1 = service+'survey_check.php?member_id='+member_id+'&user_id='+id;
-            $.getJSON(url1, function(result) {                                        
-                if(result['code'] == "0")
-                {
-                    alert(result['msg']);
-                    window.location.href='member_list.html';
-                }
+            // var url1 = service+'survey_check.php?member_id='+member_id+'&user_id='+id;
+            // $.getJSON(url1, function(result) {                                        
+            //     if(result['code'] == "0")
+            //     {
+            //         alert(result['msg']);
+            //         window.location.href='member_list.html';
+            //     }
                 
-            });
+            // });
 
             var url = service+'member_name.php?member_id='+member_id;
             $.getJSON(url, function(result) {                                        
